@@ -1,0 +1,27 @@
+.profile {
+  width:20%;
+  height: 20%;
+}
+
+.cointainer{
+	flex: 3;
+	
+}
+
+.project-section{
+	flex: 5;
+	justify-content: space-around;
+
+}
+
+.social-section{
+	flex: 2;
+}
+
+.main{
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+}
