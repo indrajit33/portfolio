@@ -1,45 +1,47 @@
-import React, { Component } from 'react';
+import React,{ Component } from 'react';
 
-const TITLES = [
-  'a software engineer',
-  'a music lover',
-  'an enthusiastic learner',
-  'an adventure seeker'
-];
+  const TITLES =[
+    'a software engineer',
+    'a music lover',
+    'an enthusiastic learner',
+    'an adventure seeker'
+  ]; 
 
-class Title extends Component {
-  state = { titleIndex: 0, fadeIn: true };
+class Title extends Component{
 
-  componentDidMount() {
-    this.timeout = setTimeout(() => this.setState({ fadeIn: false }), 2000);
-
-    this.animateTitles();
+  constructor(){
+    super();
+    this.state = { "index":0 };
   }
 
-  componentWillUnmount() {
-    clearInterval(this.titleInterval);
-    clearTimeout(this.timeout);
+  componentDidMount(){
+    this.animateTitle(); 
   }
 
-  animateTitles = () => {
-    this.titleInterval = setInterval(() => {
-      const titleIndex = (this.state.titleIndex + 1) % TITLES.length;
-
-      this.setState({ titleIndex, fadeIn: true });
-
-      this.timeout = setTimeout(() => this.setState({ fadeIn: false }), 2000);
-    }, 4000);
+  componentWillUnmount(){
+    clearTimeout(this.animateFunction);
   }
 
-  render() {
-    const { fadeIn, titleIndex } = this.state;
+  animateTitle = () => {
 
-    const title = TITLES[titleIndex];
+    let i = 1;
+    
+      this.animateFunction = setInterval( () =>{
 
-    return (
-      <p className={fadeIn ? 'title-fade-in' : 'title-fade-out'}>I am {title}</p>
+        this.setState({ "index":i });
+        i++;
+        i = i < TITLES.length ? i : 0;
+      },3000)
+
+  }
+
+  render(){
+    console.log(this.state.index);
+    return(
+      <p> I am {TITLES[this.state.index]} </p>
     )
   }
+
 }
 
 export default Title;
